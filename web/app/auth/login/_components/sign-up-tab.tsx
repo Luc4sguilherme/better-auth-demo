@@ -34,7 +34,7 @@ export function SignUpTab({ openEmailVerificationTab }: { openEmailVerificationT
 
   async function handleSignUp(data: SignUpForm) {
     const res = await authClient.signUp.email(
-      { ...data, callbackURL: "/" },
+      { ...data, callbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/` },
       {
         onError: (error) => {
           toast.error(error.error.message || "Failed to sign up");

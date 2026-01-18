@@ -76,7 +76,7 @@ function AccountCard({
   function linkAccount() {
     return authClient.linkSocial({
       provider,
-      callbackURL: "/profile",
+      callbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/profile`,
     })
   }
 

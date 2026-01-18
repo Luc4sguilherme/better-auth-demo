@@ -4,7 +4,8 @@ import { createAuthClient } from "better-auth/react";
 import { accessControl, admin, user } from "@/components/auth/permissions";
 
 export const authClient = createAuthClient({
-  baseURL: process.env.NEXT_PUBLIC_APP_URL,
+  baseURL: process.env.NEXT_PUBLIC_SERVER,
+  basePath: "/auth",
   plugins: [
     twoFactorClient({
       onTwoFactorRedirect: () => {

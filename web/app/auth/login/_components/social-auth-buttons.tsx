@@ -15,7 +15,9 @@ export function SocialAuthButtons() {
         action={() => {
           return authClient.signIn.social({
             provider,
-            callbackURL: "/",
+            callbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/`,
+            newUserCallbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/`,
+            errorCallbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/auth/login`,
           });
         }}
       >

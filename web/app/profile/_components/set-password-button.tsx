@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { BetterAuthActionButton } from "@/components/auth/better-auth-action-button"
-import { authClient } from "@/lib/auth/auth-client"
+import { BetterAuthActionButton } from "@/components/auth/better-auth-action-button";
+import { authClient } from "@/lib/auth/auth-client";
 
 export function SetPasswordButton({ email }: { email: string }) {
   return (
@@ -11,11 +11,11 @@ export function SetPasswordButton({ email }: { email: string }) {
       action={() => {
         return authClient.requestPasswordReset({
           email,
-          redirectTo: "/auth/reset-password",
-        })
+          redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password`,
+        });
       }}
     >
       Send Password Reset Email
     </BetterAuthActionButton>
-  )
+  );
 }

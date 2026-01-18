@@ -44,7 +44,7 @@ export function EmailVerification({ email }: { email: string }) {
           startEmailVerificationCountdown();
           return authClient.sendVerificationEmail({
             email,
-            callbackURL: "/",
+            callbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/`,
           });
         }}
       >

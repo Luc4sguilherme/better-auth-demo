@@ -45,7 +45,7 @@ export function ProfileUpdateForm({
       promises.push(
         authClient.changeEmail({
           newEmail: data.email,
-          callbackURL: "/profile",
+          callbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/profile`,
         }),
       );
     }

@@ -30,7 +30,7 @@ export function ForgotPassword({ openSignInTab }: { openSignInTab: () => void })
     await authClient.requestPasswordReset(
       {
         ...data,
-        redirectTo: "/auth/reset-password",
+        redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password`,
       },
       {
         onError: (error) => {

@@ -4,6 +4,7 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { ConfigService } from '@nestjs/config';
 import { EmailService } from 'src/email/email.service';
 import type { PrismaClient } from 'prisma/generated/client';
+import { Logger } from '@nestjs/common';
 
 export function createBetterAuth(
   prisma: PrismaClient,
@@ -15,8 +16,9 @@ export function createBetterAuth(
       provider: 'postgresql',
     }),
     baseURL: configService.getOrThrow('BETTER_AUTH_URL'),
+    basePath: '/auth',
     secret: configService.getOrThrow('BETTER_AUTH_SECRET'),
-    trustedOrigins: [configService.getOrThrow('BETTER_AUTH_URL')],
+    trustedOrigins: [configService.getOrThrow('BETTER_TRUSTED_ORIGINS')],
     socialProviders: {
       google: {
         clientId: configService.getOrThrow('GOOGLE_CLIENT_ID'),
@@ -68,6 +70,26 @@ export function createBetterAuth(
           }
         }
       }),
+    },
+    logger: {
+      log: (level, message, ...args) => {
+        const logger = new Logger();
+
+        switch (level) {
+          case `error`:
+            logger.error(message, ...args, 'AuthService');
+            break;
+          case `debug`:
+            logger.debug(message, ...args, 'AuthService');
+            break;
+          case `info`:
+            logger.log(message, ...args, 'AuthService');
+            break;
+          case `warn`:
+            logger.warn(message, ...args, 'AuthService');
+            break;
+        }
+      },
     },
   });
 }

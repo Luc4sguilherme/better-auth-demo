@@ -39,7 +39,7 @@ export function SignInTab({
 
   async function handleSignIn(data: SignInForm) {
     await authClient.signIn.email(
-      { ...data, callbackURL: "/" },
+      { ...data, callbackURL:`${process.env.NEXT_PUBLIC_APP_URL}/` },
       {
         onError: (error) => {
           if (error.error.code === "EMAIL_NOT_VERIFIED") {

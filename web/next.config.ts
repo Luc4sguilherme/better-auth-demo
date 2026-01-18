@@ -6,14 +6,6 @@ const nextConfig: NextConfig = {
       "lh3.googleusercontent.com",
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/auth/:path*',
-        destination: `${process.env.NEXT_PUBLIC_SERVER}/api/auth/:path*`,
-      },
-    ]
-  },
 };
 
 export default nextConfig;

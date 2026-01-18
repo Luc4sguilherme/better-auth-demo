@@ -10,7 +10,7 @@ export function AccountDeletion() {
       variant="destructive"
       className="w-full"
       successMessage="Account deletion initiated. Please check your email to confirm."
-      action={() => authClient.deleteUser({ callbackURL: "/" })}
+      action={() => authClient.deleteUser({ callbackURL: `${process.env.NEXT_PUBLIC_APP_URL}/` })}
     >
       Delete Account Permanently
     </BetterAuthActionButton>

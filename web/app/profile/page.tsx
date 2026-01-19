@@ -15,6 +15,7 @@ import { AccountLinking } from "./_components/account-linking";
 import { AccountDeletion } from "./_components/account-deletion";
 import { TwoFactorAuth } from "./_components/two-factor-auth";
 import { headers } from "next/headers";
+import { ImpersonationIndicator } from "@/components/auth/impersonation-indicator";
 
 export default async function ProfilePage() {
   const { data: session } = await authClient.getSession({
@@ -111,6 +112,8 @@ export default async function ProfilePage() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      <ImpersonationIndicator />
     </div>
   );
 }
